@@ -52,12 +52,13 @@ Statyczna biblioteka NSPR.
 %build
 cd mozilla/nsprpub
 %{__autoconf}
+# don't use "--disable-strip" - it will cause stripping
 %configure \
 	--with-dist-prefix=$RPM_BUILD_ROOT%{_prefix} \
 	--with-mozilla \
 	--enable-optimize="%{rpmcflags}" \
-	--disable-debug \
-	--enable-strip \
+	--%{?debug:en}%{!?debug:dis}able-debug \
+	%{!?debug:--enable-strip} \
 	--with-pthreads \
 	--enable-ipv6
 
