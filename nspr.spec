@@ -1,13 +1,13 @@
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.2.2
-Release:	2
+Version:	4.3
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-Patch0:		%{name}-%{version}-mozilla1.2b.patch
+# Source0-md5:	df714fd7179508ddd1d2c31abfaa8450
 BuildRequires:	autoconf
 Obsoletes:	nspr-pthreads
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -47,17 +47,17 @@ Statyczna biblioteka NSPR.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
 cd mozilla/nsprpub
 %{__autoconf}
+# don't use "--disable-strip" - it will cause stripping
 %configure \
 	--with-dist-prefix=$RPM_BUILD_ROOT%{_prefix} \
 	--with-mozilla \
 	--enable-optimize="%{rpmcflags}" \
-	--disable-debug \
-	--enable-strip \
+	--%{?debug:en}%{!?debug:dis}able-debug \
+	%{!?debug:--enable-strip} \
 	--with-pthreads \
 	--enable-ipv6
 
