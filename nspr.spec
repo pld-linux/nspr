@@ -13,6 +13,7 @@ Source0:	%{name}-%{version}-%{snap}.tar.bz2
 # Source0-md5:	b8b224d015b28ed47cbad573e0a3d363
 # releases
 #Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
+Source1:	%{name}-mozilla-nspr.pc
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-acfix.patch
 Patch2:		%{name}-libdir.patch
@@ -79,7 +80,7 @@ cp -f /usr/share/automake/config.sub build/autoconf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_aclocaldir}
+install -d $RPM_BUILD_ROOT{%{_aclocaldir},%{_pkgconfigdir}}
 
 cd mozilla/nsprpub
 %{__make} install \
@@ -87,6 +88,11 @@ cd mozilla/nsprpub
 
 install config/%{name}.m4 $RPM_BUILD_ROOT%{_aclocaldir}
 install config/%{name}-config $RPM_BUILD_ROOT%{_bindir}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_pkgconfigdir}/mozilla-nspr.pc
+
+sed -i -e 's#libdir=.*#libdir=%{_libdir}#g' \
+	-e 's#includedir=.*#includedir=%{_includedir}#g' \
+	$RPM_BUILD_ROOT%{_pkgconfigdir}/mozilla-nspr.pc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -103,6 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nspr-config
 %{_includedir}/nspr
 %{_aclocaldir}/*.m4
+%{_pkgconfigdir}/*.pc
 
 %files static
 %defattr(644,root,root,755)
