@@ -13,6 +13,8 @@ Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	a7116e33316dad8e7ffda2fc64e69da1
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-acfix.patch
+Patch2:		%{name}-amd64.patch
+Patch3:		%{name}-libdir.patch
 BuildRequires:	autoconf >= 2.12
 BuildRequires:	automake
 Obsoletes:	nspr-pthreads
@@ -55,13 +57,17 @@ Statyczna biblioteka NSPR.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 cd mozilla/nsprpub
+cp /usr/share/automake/config.sub build/autoconf/
 %{__autoconf}
 # don't use "--disable-strip" - it will cause stripping
 %configure \
 	--with-dist-prefix=$RPM_BUILD_ROOT%{_prefix} \
+	--with-dist-libdir=$RPM_BUILD_ROOT%{_libdir} \
 	--with-mozilla \
 	--enable-optimize="%{rpmcflags}" \
 	--%{?debug:en}%{!?debug:dis}able-debug \
