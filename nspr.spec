@@ -6,7 +6,6 @@ Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-Patch0:		%{name}-alpha.patch
 BuildRequires:	autoconf
 Obsoletes:	nspr-pthreads
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -46,7 +45,6 @@ Statyczna biblioteka NSPR.
 
 %prep
 %setup -q
-#%patch -p1
 
 %build
 cd mozilla/nsprpub
