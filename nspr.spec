@@ -1,18 +1,19 @@
-
-%define		_snap	20030517
-
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.3
-Release:	2.%{_snap}
+Version:	4.4.1
+Release:	1
 Epoch:		1
-License:	GPL
+License:	MPL or GPL
 Group:		Libraries
+# they didn't release sources in tarball, only tagged in CVS as NSPR_4_4_1_RTM
+# -d :pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot get -r NSPR_4_4_1_RTM mozilla/nsprpub
 #Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-Source0:	%{name}-%{_snap}.tar.gz
-# Source0-md5: 3392849244f60ce772ec91c0a5d92546
-BuildRequires:	autoconf
+Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	a7116e33316dad8e7ffda2fc64e69da1
+Patch0:		%{name}-am18.patch
+Patch1:		%{name}-acfix.patch
+BuildRequires:	autoconf >= 2.12
 BuildRequires:	automake
 Obsoletes:	nspr-pthreads
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -51,7 +52,9 @@ Static NSPR library.
 Statyczna biblioteka NSPR.
 
 %prep
-%setup -q -c mozilla
+%setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
 cd mozilla/nsprpub
