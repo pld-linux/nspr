@@ -3,7 +3,7 @@ Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
 Version:	4.6
 %define	snap	20041030
-Release:	0.%{snap}.1
+Release:	0.%{snap}.2
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
