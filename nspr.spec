@@ -1,18 +1,19 @@
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.4.1
-Release:	1
+Version:	4.6
+%define		snap	20041030
+Release:	0.%{snap}.1
 Epoch:		1
-License:	MPL or GPL
+License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
-# they didn't release sources in tarball, only tagged in CVS as NSPR_4_4_1_RTM
-# -d :pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot get -r NSPR_4_4_1_RTM mozilla/nsprpub
+# :pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot mozilla/nsprpub -r NSPR_4_5_RTM
+Source0:	%{name}-%{version}-%{snap}.tar.bz2
+# Source0-md5:	b8b224d015b28ed47cbad573e0a3d363
 #Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	a7116e33316dad8e7ffda2fc64e69da1
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-acfix.patch
+Patch2:		%{name}-libdir.patch
 BuildRequires:	autoconf >= 2.12
 BuildRequires:	automake
 Obsoletes:	nspr-pthreads
@@ -29,7 +30,7 @@ Biblioteki z wieloplatformow± implementacj± us³ug z Netscape.
 Summary:	NSPR library header files for development
 Summary(pl):	Pliki nag³ówkowe bibliotek NSPR
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	nspr-pthreads-devel
 
 %description devel
@@ -42,7 +43,7 @@ Pliki nag³ówkowe bibliotek NSPR z Netscape.
 Summary:	Static NSPR library
 Summary(pl):	Statyczna biblioteka NSPR
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	nspr-pthreads-static
 
 %description static
@@ -52,16 +53,19 @@ Static NSPR library.
 Statyczna biblioteka NSPR.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}.HEAD
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 cd mozilla/nsprpub
+cp -f /usr/share/automake/config.sub build/autoconf
 %{__autoconf}
 # don't use "--disable-strip" - it will cause stripping
 %configure \
 	--with-dist-prefix=$RPM_BUILD_ROOT%{_prefix} \
+	--with-dist-libdir=$RPM_BUILD_ROOT%{_libdir} \
 	--with-mozilla \
 	--enable-optimize="%{rpmcflags}" \
 	--%{?debug:en}%{!?debug:dis}able-debug \
