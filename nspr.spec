@@ -1,13 +1,15 @@
+%define	snap	20040117
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.4.1
-Release:	3
+Version:	4.5.0
+Release:	0.%{snap}.1
 Epoch:		1
 License:	MPL or GPL
 Group:		Libraries
-Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	6187ec5f2c01554ceef2db35160f84dc
+Source0:	%{name}-%{version}-%{snap}.tar.bz2
+# Source0-md5:	78aad414c7b958809ecad63c47a8d14e
+#Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-acfix.patch
 Patch2:		%{name}-amd64.patch
