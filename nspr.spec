@@ -8,6 +8,7 @@ Group:		Libraries
 Source0:	ftp://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-alpha.patch
 BuildRequires:	autoconf
+Obsoletes:	nspr-pthreads
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -22,6 +23,7 @@ Summary:	NSPR library header files for development
 Summary(pl):	Pliki nag³ówkowe bibliotek NSPR
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Obsoletes:	nspr-pthreads-devel
 
 %description devel
 Header files for the NSPR library from Netscape.
@@ -34,6 +36,7 @@ Summary:	Static NSPR library
 Summary(pl):	Statyczna biblioteka NSPR
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
+Obsoletes:	nspr-pthreads-static
 
 %description static
 Static NSPR library.
