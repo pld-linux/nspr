@@ -88,11 +88,11 @@ cd mozilla/nsprpub
 
 install config/%{name}.m4 $RPM_BUILD_ROOT%{_aclocaldir}
 install config/%{name}-config $RPM_BUILD_ROOT%{_bindir}
-install %{SOURCE1} $RPM_BUILD_ROOT%{_pkgconfigdir}/mozilla-nspr.pc
 
-sed -i -e 's#libdir=.*#libdir=%{_libdir}#g' \
+sed \
+	-e 's#libdir=.*#libdir=%{_libdir}#g' \
 	-e 's#includedir=.*#includedir=%{_includedir}#g' \
-	$RPM_BUILD_ROOT%{_pkgconfigdir}/mozilla-nspr.pc
+	%{SOURCE1} > $RPM_BUILD_ROOT%{_pkgconfigdir}/mozilla-nspr.pc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
