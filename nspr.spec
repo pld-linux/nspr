@@ -7,6 +7,7 @@ License:	GPL
 Group:		Libraries
 Source0:	ftp://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-alpha.patch
+BuildRequires:	autoconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
