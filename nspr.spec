@@ -2,7 +2,7 @@ Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno∂ne biblioteki uruchomieniowe Netscape
 Name:		nspr
 Version:	4.1.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Group(de):	Libraries
@@ -13,6 +13,7 @@ Group(pt_BR):	Bibliotecas
 Group(ru):	‚…¬Ã…œ‘≈À…
 Group(uk):	‚¶¬Ã¶œ‘≈À…
 Source0:	ftp://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
+Patch0:		%{name}-moz0.9.6.patch.gz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -62,36 +63,31 @@ Statyczna biblioteka NSPR.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 cd mozilla/nsprpub
-%{__make} \
-	DIST="$RPM_BUILD_ROOT%{_prefix}" \
-	NSDISTMODE=copy \
-	NS_USE_GCC=1 \
-	MOZILLA_CLIENT=1 \
-	NO_MDUPDATE=1 \
-	USE_PTHREADS=1 \
-	BUILD_OPT=1 \
-	OPTIMIZER="%{rpmcflags}"
+autoconf
+%configure \
+	--with-dist-prefix=$RPM_BUILD_ROOT%{_prefix} \
+	--with-mozilla \
+	--enable-optimize="%{rpmcflags}" \
+	--disable-debug \
+	--enable-strip \
+	--with-pthreads \
+	--enable-ipv6
+
+%{__make}	
 
 %install
 rm -rf $RPM_BUILD_ROOT
 cd mozilla/nsprpub
-%{__make} \
-	DIST="$RPM_BUILD_ROOT%{_prefix}" \
-	NSDISTMODE=copy \
-	NS_USE_GCC=1 \
-	MOZILLA_CLIENT=1 \
-	NO_MDUPDATE=1 \
-	USE_PTHREADS=1 \
-	BUILD_OPT=1 \
-	OPTIMIZER="%{rpmcflags}"
+%{__make} install \
+	NSDISTMODE=copy
 
-install -d $RPM_BUILD_ROOT%{_includedir}/nspr
-mv -f $RPM_BUILD_ROOT%{_includedir}/{*.h,nspr}
-mv -f $RPM_BUILD_ROOT%{_includedir}/{obsolete,nspr}
-mv -f $RPM_BUILD_ROOT%{_includedir}/{private,nspr}
+install -d $RPM_BUILD_ROOT%{_aclocaldir}
+install config/%{name}.m4 $RPM_BUILD_ROOT%{_aclocaldir}
+install config/%{name}-config $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -105,7 +101,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/nspr-config
 %{_includedir}/nspr
+%{_aclocaldir}/*.m4
 
 %files static
 %defattr(644,root,root,755)
