@@ -26,7 +26,7 @@ Biblioteki z wieloplatformow± implementacj± us³ug z Netscape.
 Summary:	NSPR library header files for development
 Summary(pl):	Pliki nag³ówkowe bibliotek NSPR
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 Obsoletes:	nspr-pthreads-devel
 
 %description devel
@@ -39,7 +39,7 @@ Pliki nag³ówkowe bibliotek NSPR z Netscape.
 Summary:	Static NSPR library
 Summary(pl):	Statyczna biblioteka NSPR
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}
 Obsoletes:	nspr-pthreads-static
 
 %description static
