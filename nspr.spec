@@ -44,7 +44,7 @@ Statyczna biblioteka NSPR.
 
 %build
 cd mozilla/nsprpub
-autoconf
+%{__autoconf}
 %configure \
 	--with-dist-prefix=$RPM_BUILD_ROOT%{_prefix} \
 	--with-mozilla \
