@@ -7,6 +7,7 @@ Epoch:		1
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
+# Source0-md5:	df714fd7179508ddd1d2c31abfaa8450
 BuildRequires:	autoconf
 Obsoletes:	nspr-pthreads
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
