@@ -2,7 +2,7 @@ Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
 Version:	4.4.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	MPL or GPL
 Group:		Libraries
