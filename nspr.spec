@@ -1,4 +1,4 @@
-%define	snap	20040117
+%define	snap	20041019
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
@@ -8,7 +8,7 @@ Epoch:		1
 License:	MPL or GPL
 Group:		Libraries
 Source0:	%{name}-%{version}-%{snap}.tar.bz2
-# Source0-md5:	78aad414c7b958809ecad63c47a8d14e
+# Source0-md5:	33a59afd389a63142400d227a7c48375
 #Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-acfix.patch
@@ -53,14 +53,14 @@ Static NSPR library.
 Statyczna biblioteka NSPR.
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+%setup -q -n nsprpub
+%patch0 -p3
+%patch1 -p3
+# probably already fixed:
+#%patch2 -p3
+%patch3 -p3
 
 %build
-cd mozilla/nsprpub
 cp /usr/share/automake/config.sub build/autoconf/
 %{__autoconf}
 # don't use "--disable-strip" - it will cause stripping
@@ -80,7 +80,6 @@ cp /usr/share/automake/config.sub build/autoconf/
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_aclocaldir}
 
-cd mozilla/nsprpub
 %{__make} install \
 	NSDISTMODE=copy
 
