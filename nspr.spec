@@ -9,6 +9,7 @@ Release:	2.%{_snap}
 Epoch:		1
 License:	GPL
 Group:		Libraries
+#Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
 Source0:	%{name}-%{_snap}.tar.gz
 # Source0-md5: 3392849244f60ce772ec91c0a5d92546
 BuildRequires:	autoconf
