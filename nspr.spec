@@ -2,15 +2,12 @@ Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
 Version:	4.4.1
-Release:	2
+Release:	3
 Epoch:		1
 License:	MPL or GPL
 Group:		Libraries
-# they didn't release sources in tarball, only tagged in CVS as NSPR_4_4_1_RTM
-# -d :pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot get -r NSPR_4_4_1_RTM mozilla/nsprpub
-#Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	a7116e33316dad8e7ffda2fc64e69da1
+Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
+# Source0-md5:	6187ec5f2c01554ceef2db35160f84dc
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-acfix.patch
 Patch2:		%{name}-amd64.patch
