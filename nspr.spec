@@ -1,11 +1,11 @@
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.2
-Release:	2
+Version:	4.2.2
+Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	ftp://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
+Source0:	http://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-alpha.patch
 BuildRequires:	autoconf
 Obsoletes:	nspr-pthreads
@@ -46,7 +46,7 @@ Statyczna biblioteka NSPR.
 
 %prep
 %setup -q
-%patch -p1
+#%patch -p1
 
 %build
 cd mozilla/nsprpub
