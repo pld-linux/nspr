@@ -11,13 +11,3 @@
      ;;
  esac
  
---- nspr-4.5/mozilla/nsprpub/configure.in.orig	2004-10-30 20:41:36.119781000 +0200
-+++ nspr-4.5/mozilla/nsprpub/configure.in	2004-10-30 20:44:36.328386080 +0200
-@@ -2504,7 +2504,6 @@
- pkg/solaris/SUNWpr/Makefile
- pkg/solaris/SUNWprx/Makefile
- pkg/solaris/SUNWprd/Makefile
--pkg/solaris/SUNWprdx/Makefile
- pr/Makefile 
- pr/include/Makefile 
- pr/include/md/Makefile 
