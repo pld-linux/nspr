@@ -1,19 +1,19 @@
-%define	snap	20040117
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
+# it's actually 4.5, but leave this .0 because of previous snaps
 Version:	4.5.0
-Release:	0.%{snap}.1
+Release:	1
 Epoch:		1
 License:	MPL or GPL
 Group:		Libraries
-Source0:	%{name}-%{version}-%{snap}.tar.bz2
-# Source0-md5:	78aad414c7b958809ecad63c47a8d14e
+# :pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot mozilla/nsprpub -r NSPR_4_5_RTM
+Source0:	%{name}-4.5.tar.bz2
+# Source0-md5:	f4bfd5d90ff9ddfcb58bf2b9a1704f91
 #Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-acfix.patch
-Patch2:		%{name}-amd64.patch
-Patch3:		%{name}-libdir.patch
+Patch2:		%{name}-libdir.patch
 BuildRequires:	autoconf >= 2.12
 BuildRequires:	automake
 Obsoletes:	nspr-pthreads
@@ -30,7 +30,7 @@ Biblioteki z wieloplatformow± implementacj± us³ug z Netscape.
 Summary:	NSPR library header files for development
 Summary(pl):	Pliki nag³ówkowe bibliotek NSPR
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	nspr-pthreads-devel
 
 %description devel
@@ -43,7 +43,7 @@ Pliki nag³ówkowe bibliotek NSPR z Netscape.
 Summary:	Static NSPR library
 Summary(pl):	Statyczna biblioteka NSPR
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	nspr-pthreads-static
 
 %description static
@@ -53,15 +53,14 @@ Static NSPR library.
 Statyczna biblioteka NSPR.
 
 %prep
-%setup -q
+%setup -q -n %{name}-4.5
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 cd mozilla/nsprpub
-cp /usr/share/automake/config.sub build/autoconf/
+cp -f /usr/share/automake/config.sub build/autoconf
 %{__autoconf}
 # don't use "--disable-strip" - it will cause stripping
 %configure \
