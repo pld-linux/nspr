@@ -56,7 +56,7 @@ autoconf
 	--with-pthreads \
 	--enable-ipv6
 
-%{__make}	
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
