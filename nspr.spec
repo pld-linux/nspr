@@ -13,6 +13,7 @@ Group:		Libraries
 Source0:	%{name}-%{_snap}.tar.gz
 # Source0-md5: 3392849244f60ce772ec91c0a5d92546
 BuildRequires:	autoconf
+BuildRequires:	automake
 Obsoletes:	nspr-pthreads
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
