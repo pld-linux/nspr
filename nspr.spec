@@ -81,11 +81,12 @@ autoconf
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_aclocaldir}
+
 cd mozilla/nsprpub
 %{__make} install \
 	NSDISTMODE=copy
 
-install -d $RPM_BUILD_ROOT%{_aclocaldir}
 install config/%{name}.m4 $RPM_BUILD_ROOT%{_aclocaldir}
 install config/%{name}-config $RPM_BUILD_ROOT%{_bindir}
 
