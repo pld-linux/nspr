@@ -3,7 +3,7 @@ Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
 Version:	4.6
 %define	snap	20041030
-Release:	0.%{snap}.2
+Release:	0.%{snap}.3
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
@@ -92,6 +92,7 @@ install config/%{name}-config $RPM_BUILD_ROOT%{_bindir}
 sed \
 	-e 's#libdir=.*#libdir=%{_libdir}#g' \
 	-e 's#includedir=.*#includedir=%{_includedir}#g' \
+	-e 's#VERSION#%{version}#g' \
 	%{SOURCE1} > $RPM_BUILD_ROOT%{_pkgconfigdir}/mozilla-nspr.pc
 
 %clean
