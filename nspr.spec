@@ -2,7 +2,7 @@ Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
 Version:	4.6
-Release:	1
+Release:	2
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
@@ -13,6 +13,7 @@ Patch0:		%{name}-am18.patch
 Patch1:		%{name}-acfix.patch
 BuildRequires:	autoconf >= 2.12
 BuildRequires:	automake
+BuildRequires:	sed >= 4.0
 Obsoletes:	nspr-pthreads
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -53,6 +54,9 @@ Statyczna biblioteka NSPR.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+
+# @includedir@ is not updated to .../nspr
+sed -i -e 's,@includedir@,%{_includedir}/nspr,' mozilla/nsprpub/config/nspr-config.in
 
 %build
 cd mozilla/nsprpub
