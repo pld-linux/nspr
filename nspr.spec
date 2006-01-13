@@ -1,13 +1,13 @@
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.6
-Release:	2
+Version:	4.6.1
+Release:	1
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	a37c3cde875502e05576429312452465
+Source0:	ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
+# Source0-md5:	267a63dec54e72b02831d3083fd9faaf
 Source1:	%{name}-mozilla-nspr.pc
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-acfix.patch
@@ -67,6 +67,9 @@ cp -f /usr/share/automake/config.sub build/autoconf
 	--with-dist-prefix=$RPM_BUILD_ROOT%{_prefix} \
 	--with-dist-libdir=$RPM_BUILD_ROOT%{_libdir} \
 	--with-mozilla \
+%ifarch %{x8664} ppc64
+	--enable-64bit \
+%endif
 	--enable-optimize="%{rpmcflags}" \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	%{!?debug:--enable-strip} \
@@ -111,4 +114,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-%attr(644,root,root) %{_libdir}/lib*.a
+%{_libdir}/lib*.a
