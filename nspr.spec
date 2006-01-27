@@ -95,6 +95,8 @@ sed \
 	-e 's#VERSION#%{version}#g' \
 	%{SOURCE1} > $RPM_BUILD_ROOT%{_pkgconfigdir}/mozilla-nspr.pc
 
+ln -s mozilla-nspr.pc $RPM_BUILD_ROOT%{_pkgconfigdir}/nspr.pc
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
