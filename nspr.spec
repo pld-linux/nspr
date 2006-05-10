@@ -11,6 +11,7 @@ Source0:	ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{n
 Source1:	%{name}-mozilla-nspr.pc
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-acfix.patch
+URL:		http://www.mozilla.org/projects/nspr/
 BuildRequires:	autoconf >= 2.12
 BuildRequires:	automake
 BuildRequires:	sed >= 4.0
