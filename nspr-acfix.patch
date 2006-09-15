@@ -1,6 +1,16 @@
---- nspr-4.4.1/mozilla/nsprpub/configure.in.orig	2003-11-25 01:09:04.000000000 +0100
-+++ nspr-4.4.1/mozilla/nsprpub/configure.in	2003-12-29 02:47:28.778924056 +0100
-@@ -1894,8 +1894,8 @@
+--- nspr-4.6.3/mozilla/nsprpub/configure.in.orig	2006-07-15 00:31:04.000000000 +0200
++++ nspr-4.6.3/mozilla/nsprpub/configure.in	2006-09-15 18:50:56.224470000 +0200
+@@ -409,7 +409,8 @@
+ 
+     AC_MSG_CHECKING([whether the $host compiler ($HOST_CC $HOST_CFLAGS $HOST_LDFLAGS) works])
+     AC_TRY_COMPILE([], [return(0);], 
+-        [ac_cv_prog_host_cc_works=1 AC_MSG_RESULT([yes])],
++        [ac_cv_prog_host_cc_works=1
++	 AC_MSG_RESULT([yes])],
+         AC_MSG_ERROR([installation or configuration problem: $host compiler $HOST_CC cannot create executables.]) )
+ 
+     CC=$_SAVE_CC
+@@ -2156,8 +2157,8 @@
      ;;
  *)
      AC_CHECK_LIB(dl, dlopen,
