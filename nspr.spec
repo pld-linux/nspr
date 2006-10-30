@@ -2,7 +2,7 @@ Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl):	Przeno¶ne biblioteki uruchomieniowe Netscape
 Name:		nspr
 Version:	4.6.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
@@ -97,6 +97,9 @@ sed \
 	%{SOURCE1} > $RPM_BUILD_ROOT%{_pkgconfigdir}/mozilla-nspr.pc
 
 ln -s mozilla-nspr.pc $RPM_BUILD_ROOT%{_pkgconfigdir}/nspr.pc
+
+# let rpm find deps
+chmod 755 $RPM_BUILD_ROOT%{_libdir}/lib*.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
