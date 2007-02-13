@@ -1,5 +1,5 @@
 Summary:	Netscape Portable Runtime (NSPR)
-Summary(pl.UTF-8):   Przenośne biblioteki uruchomieniowe Netscape
+Summary(pl.UTF-8):	Przenośne biblioteki uruchomieniowe Netscape
 Name:		nspr
 Version:	4.6.5
 Release:	1
@@ -27,7 +27,7 @@ Biblioteki z wieloplatformową implementacją usług z Netscape.
 
 %package devel
 Summary:	NSPR library header files for development
-Summary(pl.UTF-8):   Pliki nagłówkowe bibliotek NSPR
+Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek NSPR
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	nspr-pthreads-devel
@@ -40,7 +40,7 @@ Pliki nagłówkowe bibliotek NSPR z Netscape.
 
 %package static
 Summary:	Static NSPR library
-Summary(pl.UTF-8):   Statyczna biblioteka NSPR
+Summary(pl.UTF-8):	Statyczna biblioteka NSPR
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	nspr-pthreads-static
