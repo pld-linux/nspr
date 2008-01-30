@@ -11,6 +11,7 @@ Source0:	ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{n
 Source1:	%{name}-mozilla-nspr.pc
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-acfix.patch
+Patch2:		%{name}-sparc64.patch
 URL:		http://www.mozilla.org/projects/nspr/
 BuildRequires:	autoconf >= 2.12
 BuildRequires:	automake
@@ -55,6 +56,7 @@ Statyczna biblioteka NSPR.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p0
 
 # @includedir@ is not updated to .../nspr
 sed -i -e 's,@includedir@,%{_includedir}/nspr,' mozilla/nsprpub/config/nspr-config.in
