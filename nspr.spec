@@ -100,6 +100,8 @@ sed \
 
 ln -s mozilla-nspr.pc $RPM_BUILD_ROOT%{_pkgconfigdir}/nspr.pc
 
+rm -f $RPM_BUILD_ROOT%{_bindir}/lib{nspr,plc,plds}4.so
+
 # let rpm find deps
 chmod 755 $RPM_BUILD_ROOT%{_libdir}/lib*.so
 
