@@ -7,7 +7,7 @@ Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	75d5de21ebc1a21886a25673920490ff
+# Source0-md5:	f937c37f45b116130fef34b15afb6fac
 Source1:	%{name}-mozilla-nspr.pc
 Patch0:		%{name}-acfix.patch
 Patch1:		%{name}-sparc64.patch
