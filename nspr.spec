@@ -1,17 +1,16 @@
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl.UTF-8):	Przenośne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.6.7
-Release:	3
+Version:	4.7
+Release:	1
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
-Source0:	ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
+Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
 # Source0-md5:	75d5de21ebc1a21886a25673920490ff
 Source1:	%{name}-mozilla-nspr.pc
-Patch0:		%{name}-am18.patch
-Patch1:		%{name}-acfix.patch
-Patch2:		%{name}-sparc64.patch
+Patch0:		%{name}-acfix.patch
+Patch1:		%{name}-sparc64.patch
 URL:		http://www.mozilla.org/projects/nspr/
 BuildRequires:	autoconf >= 2.12
 BuildRequires:	automake
@@ -55,42 +54,31 @@ Statyczna biblioteka NSPR.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p0
-
-# @includedir@ is not updated to .../nspr
-sed -i -e 's,@includedir@,%{_includedir}/nspr,' mozilla/nsprpub/config/nspr-config.in
+%patch1 -p0
 
 %build
 cd mozilla/nsprpub
 cp -f /usr/share/automake/config.sub build/autoconf
 %{__autoconf}
-# don't use "--disable-strip" - it will cause stripping
 %configure \
-	--with-dist-prefix=$RPM_BUILD_ROOT%{_prefix} \
-	--with-dist-libdir=$RPM_BUILD_ROOT%{_libdir} \
-	--with-mozilla \
+	--includedir=%{_includedir}/nspr \
 %ifarch %{x8664} ppc64
 	--enable-64bit \
 %endif
-	--enable-optimize="%{rpmcflags}" \
 	--%{?debug:en}%{!?debug:dis}able-debug \
-	%{!?debug:--enable-strip} \
-	--with-pthreads \
-	--enable-ipv6
+	--enable-ipv6 \
+	--enable-optimize="%{rpmcflags}" \
+	--with-mozilla \
+	--with-pthreads
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_aclocaldir},%{_pkgconfigdir}}
+install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
 
-cd mozilla/nsprpub
-%{__make} install \
-	NSDISTMODE=copy
-
-install config/%{name}.m4 $RPM_BUILD_ROOT%{_aclocaldir}
-install config/%{name}-config $RPM_BUILD_ROOT%{_bindir}
+%{__make} -C mozilla/nsprpub install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 sed \
 	-e 's#libdir=.*#libdir=%{_libdir}#g' \
@@ -100,10 +88,7 @@ sed \
 
 ln -s mozilla-nspr.pc $RPM_BUILD_ROOT%{_pkgconfigdir}/nspr.pc
 
-rm -f $RPM_BUILD_ROOT%{_bindir}/lib{nspr,plc,plds}4.so
-
-# let rpm find deps
-chmod 755 $RPM_BUILD_ROOT%{_libdir}/lib*.so
+rm $RPM_BUILD_ROOT%{_bindir}/{compile-et.pl,prerr.properties}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -113,15 +98,20 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libnspr4.so
+%attr(755,root,root) %{_libdir}/libplc4.so
+%attr(755,root,root) %{_libdir}/libplds4.so
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/nspr-config
 %{_includedir}/nspr
-%{_aclocaldir}/*.m4
-%{_pkgconfigdir}/*.pc
+%{_aclocaldir}/nspr.m4
+%{_pkgconfigdir}/mozilla-nspr.pc
+%{_pkgconfigdir}/nspr.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libnspr4.a
+%{_libdir}/libplc4.a
+%{_libdir}/libplds4.a
