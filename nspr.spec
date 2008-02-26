@@ -2,7 +2,7 @@ Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl.UTF-8):	Przenośne biblioteki uruchomieniowe Netscape
 Name:		nspr
 Version:	4.7
-Release:	1
+Release:	2
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
@@ -56,6 +56,8 @@ Statyczna biblioteka NSPR.
 %patch0 -p1
 %patch1 -p0
 
+install %{SOURCE1} mozilla/nsprpub/nspr-mozilla-nspr.pc.in
+
 %build
 cd mozilla/nsprpub
 cp -f /usr/share/automake/config.sub build/autoconf
@@ -73,6 +75,8 @@ cp -f /usr/share/automake/config.sub build/autoconf
 
 %{__make}
 
+./config.status --file=nspr-mozilla-nspr.pc
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
@@ -80,11 +84,7 @@ install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
 %{__make} -C mozilla/nsprpub install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-sed \
-	-e 's#libdir=.*#libdir=%{_libdir}#g' \
-	-e 's#includedir=.*#includedir=%{_includedir}#g' \
-	-e 's#VERSION#%{version}#g' \
-	%{SOURCE1} > $RPM_BUILD_ROOT%{_pkgconfigdir}/mozilla-nspr.pc
+install mozilla/nsprpub/nspr-mozilla-nspr.pc $RPM_BUILD_ROOT%{_pkgconfigdir}/mozilla-nspr.pc
 
 ln -s mozilla-nspr.pc $RPM_BUILD_ROOT%{_pkgconfigdir}/nspr.pc
 
