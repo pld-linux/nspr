@@ -8,5 +8,3 @@ Description: The Netscape Portable Runtime
 Version: @MOD_MAJOR_VERSION@.@MOD_MINOR_VERSION@.@MOD_PATCH_VERSION@
 Libs: -L${libdir} -lplds4 -lplc4 -lnspr4 -lpthread -ldl -lc -lpthread
 Cflags: -I${includedir}
-
-
