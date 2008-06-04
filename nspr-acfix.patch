@@ -1,0 +1,64 @@
+--- nspr-4.7.1/mozilla/nsprpub/configure.in.orig	2008-04-29 01:21:11.000000000 +0200
++++ nspr-4.7.1/mozilla/nsprpub/configure.in	2008-06-04 18:20:21.085383087 +0200
+@@ -427,7 +427,8 @@
+ 
+     AC_MSG_CHECKING([whether the $host compiler ($HOST_CC $HOST_CFLAGS $HOST_LDFLAGS) works])
+     AC_TRY_COMPILE([], [return(0);], 
+-        [ac_cv_prog_host_cc_works=1 AC_MSG_RESULT([yes])],
++        [ac_cv_prog_host_cc_works=1
++	 AC_MSG_RESULT([yes])],
+         AC_MSG_ERROR([installation or configuration problem: $host compiler $HOST_CC cannot create executables.]) )
+ 
+     CC=$_SAVE_CC
+@@ -2252,8 +2253,8 @@
+     ;;
+ *)
+     AC_CHECK_LIB(dl, dlopen,
+-        AC_CHECK_HEADER(dlfcn.h,
+-            OS_LIBS="-ldl $OS_LIBS"))
++        [AC_CHECK_HEADER(dlfcn.h,
++            OS_LIBS="-ldl $OS_LIBS")])
+     ;;
+ esac
+ 
+@@ -2850,7 +2851,7 @@
+ dnl ========================================================
+ dnl Generate output files.
+ dnl ========================================================
+-MAKEFILES="
++m4_define([MAKEFILES], [
+ Makefile 
+ config/Makefile
+ config/autoconf.mk
+@@ -2884,24 +2885,12 @@
+ pr/src/threads/Makefile 
+ pr/tests/Makefile 
+ pr/tests/dll/Makefile 
+-"
+-
+-dnl lib/tests/Makefile
+-dnl pr/tests/w16gui/Makefile
+-dnl tools/Makefile
+-
+-if test -z "$USE_PTHREADS" && test -z "$USE_BTHREADS"; then
+-    MAKEFILES="$MAKEFILES pr/src/threads/combined/Makefile"
+-elif test -n "$USE_PTHREADS"; then
+-    MAKEFILES="$MAKEFILES pr/src/pthreads/Makefile"
+-elif test -n "$USE_BTHREADS"; then
+-    MAKEFILES="$MAKEFILES pr/src/bthreads/Makefile"
+-fi
+-
+-if test -n "$USE_CPLUS"; then
+-    MAKEFILES="$MAKEFILES pr/src/cplus/Makefile pr/src/cplus/tests/Makefile"
+-fi
++pr/src/threads/combined/Makefile
++pr/src/pthreads/Makefile
++pr/src/bthreads/Makefile
++pr/src/cplus/Makefile pr/src/cplus/tests/Makefile
++])
+ 
+-echo $MAKEFILES > unallmakefiles
++echo "MAKEFILES" > unallmakefiles
+ 
+-AC_OUTPUT([$MAKEFILES], [chmod +x config/nspr-config])
++AC_OUTPUT(MAKEFILES, [chmod +x config/nspr-config])
