@@ -1,13 +1,13 @@
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl.UTF-8):	Przenośne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.8.4
+Version:	4.8.6
 Release:	1
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	a85bdbe1eb646aa32c785a37d8e3a2f5
+# Source0-md5:	592c275728c29d193fdba8009165990b
 Source1:	%{name}-mozilla-nspr.pc
 Patch0:		%{name}-acfix.patch
 Patch1:		%{name}-sparc64.patch
