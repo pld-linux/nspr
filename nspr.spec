@@ -1,13 +1,13 @@
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl.UTF-8):	Przenośne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.8.6
-Release:	2
+Version:	4.8.7
+Release:	1
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	592c275728c29d193fdba8009165990b
+# Source0-md5:	97e30989a56ab813453b71261849c200
 Source1:	%{name}-mozilla-nspr.pc
 Patch0:		%{name}-acfix.patch
 Patch1:		%{name}-sparc64.patch
@@ -23,7 +23,8 @@ Libraries that implement cross-platform runtime services from
 Netscape.
 
 %description -l pl.UTF-8
-Biblioteki z wieloplatformową implementacją usług z Netscape.
+Biblioteki z wieloplatformową implementacją usług
+uruchomieniowych Netscape'a.
 
 %package devel
 Summary:	NSPR library header files for development
@@ -36,7 +37,7 @@ Obsoletes:	nspr-pthreads-devel
 Header files for the NSPR library from Netscape.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe bibliotek NSPR z Netscape.
+Pliki nagłówkowe bibliotek NSPR Netscape'a.
 
 %package static
 Summary:	Static NSPR library
@@ -57,6 +58,10 @@ Statyczna biblioteka NSPR.
 %patch1 -p0
 
 install %{SOURCE1} mozilla/nsprpub/nspr-mozilla-nspr.pc.in
+
+# Win32-specific, requires autoconf2.13
+%{__rm} mozilla/nsprpub/build/autoconf/acwinpaths.m4 \
+	mozilla/nsprpub/aclocal.m4
 
 %build
 cd mozilla/nsprpub
