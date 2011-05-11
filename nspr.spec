@@ -1,13 +1,13 @@
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl.UTF-8):	Przenośne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.8.7
+Version:	4.8.8
 Release:	1
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	97e30989a56ab813453b71261849c200
+# Source0-md5:	b3a961d2e0ff3331745220984c70b6a9
 Source1:	%{name}-mozilla-nspr.pc
 Patch0:		%{name}-acfix.patch
 Patch1:		%{name}-sparc64.patch
@@ -93,7 +93,7 @@ install mozilla/nsprpub/nspr-mozilla-nspr.pc $RPM_BUILD_ROOT%{_pkgconfigdir}/moz
 
 ln -s mozilla-nspr.pc $RPM_BUILD_ROOT%{_pkgconfigdir}/nspr.pc
 
-rm $RPM_BUILD_ROOT%{_bindir}/{compile-et.pl,prerr.properties}
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/{compile-et.pl,prerr.properties}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
