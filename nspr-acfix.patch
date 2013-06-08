@@ -1,27 +1,6 @@
---- nspr-4.9/mozilla/nsprpub/configure.in.orig	2012-02-14 20:06:00.000000000 +0100
-+++ nspr-4.9/mozilla/nsprpub/configure.in	2012-02-22 19:51:15.304052833 +0100
-@@ -596,7 +596,8 @@
- 
-     AC_MSG_CHECKING([whether the $host compiler ($HOST_CC $HOST_CFLAGS $HOST_LDFLAGS) works])
-     AC_TRY_COMPILE([], [return(0);], 
--        [ac_cv_prog_host_cc_works=1 AC_MSG_RESULT([yes])],
-+        [ac_cv_prog_host_cc_works=1
-+	 AC_MSG_RESULT([yes])],
-         AC_MSG_ERROR([installation or configuration problem: $host compiler $HOST_CC cannot create executables.]) )
- 
-     CC=$_SAVE_CC
-@@ -2708,8 +2709,8 @@
-     ;;
- *)
-     AC_CHECK_LIB(dl, dlopen,
--        AC_CHECK_HEADER(dlfcn.h,
--            OS_LIBS="-ldl $OS_LIBS"))
-+        [AC_CHECK_HEADER(dlfcn.h,
-+            OS_LIBS="-ldl $OS_LIBS")])
-     ;;
- esac
- 
-@@ -3350,7 +3351,7 @@
+--- nspr-4.10/nspr/configure.in.orig	2013-05-28 23:39:29.000000000 +0200
++++ nspr-4.10/nspr/configure.in	2013-06-08 06:25:10.860289567 +0200
+@@ -3193,7 +3193,7 @@
  dnl ========================================================
  dnl Generate output files.
  dnl ========================================================
@@ -30,7 +9,7 @@
      Makefile
      config/Makefile
      config/autoconf.mk
-@@ -3380,41 +3381,17 @@
+@@ -3224,41 +3224,17 @@
      pr/src/threads/Makefile
      pr/tests/Makefile
      pr/tests/dll/Makefile

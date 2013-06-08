@@ -1,16 +1,15 @@
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl.UTF-8):	Przenośne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.9.6
+Version:	4.10
 Release:	1
 Epoch:		1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	62b1e9d376d503d972f90c3c0031d879
+# Source0-md5:	f5466def95726b3c900d8a0227bdd034
 Patch0:		%{name}-acfix.patch
-Patch1:		%{name}-sparc64.patch
-Patch2:		%{name}-pc.patch
+Patch1:		%{name}-pc.patch
 URL:		http://www.mozilla.org/projects/nspr/
 BuildRequires:	autoconf >= 2.12
 BuildRequires:	automake
@@ -55,15 +54,14 @@ Statyczna biblioteka NSPR.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p0
-%patch2 -p1
+%patch1 -p1
 
 # Win32-specific, requires autoconf2.13
-%{__rm} mozilla/nsprpub/build/autoconf/acwinpaths.m4 \
-	mozilla/nsprpub/aclocal.m4
+%{__rm} nspr/build/autoconf/acwinpaths.m4 \
+	nspr/aclocal.m4
 
 %build
-cd mozilla/nsprpub
+cd nspr
 cp -f /usr/share/automake/config.sub build/autoconf
 %{__autoconf}
 %configure \
@@ -81,9 +79,8 @@ cp -f /usr/share/automake/config.sub build/autoconf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
 
-%{__make} -C mozilla/nsprpub install \
+%{__make} -C nspr install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # for compatibility (upstream installs only nspr.nc); to be dropped sometime?
