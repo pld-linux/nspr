@@ -1,17 +1,16 @@
 Summary:	Netscape Portable Runtime (NSPR)
 Summary(pl.UTF-8):	Przenośne biblioteki uruchomieniowe Netscape
 Name:		nspr
-Version:	4.10.4
+Version:	4.10.5
 Release:	1
 Epoch:		1
-License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
+License:	MPL v2.0
 Group:		Libraries
 Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
-# Source0-md5:	db8e5c40dadcf3f71a20c01f503c573a
-Patch0:		%{name}-acfix.patch
-Patch1:		%{name}-pc.patch
+# Source0-md5:	c903557c620b4b84457f57ddc80934c4
+Patch0:		%{name}-pc.patch
 URL:		http://www.mozilla.org/projects/nspr/
-BuildRequires:	autoconf >= 2.12
+BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
 BuildRequires:	sed >= 4.0
 Obsoletes:	nspr-pthreads
@@ -54,11 +53,6 @@ Statyczna biblioteka NSPR.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-
-# Win32-specific, requires autoconf2.13
-%{__rm} nspr/build/autoconf/acwinpaths.m4 \
-	nspr/aclocal.m4
 
 %build
 cd nspr
