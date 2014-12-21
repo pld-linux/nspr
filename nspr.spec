@@ -63,6 +63,9 @@ cp -f /usr/share/automake/config.sub build/autoconf
 %ifarch %{x8664} ppc64
 	--enable-64bit \
 %endif
+%ifarch x32
+	--enable-x32 \
+%endif
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--enable-ipv6 \
 	--enable-optimize="%{rpmcflags}" \
