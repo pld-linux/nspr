@@ -6,10 +6,10 @@ Release:	1
 Epoch:		1
 License:	MPL v2.0
 Group:		Libraries
-Source0:	http://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
+Source0:	http://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
 # Source0-md5:	74ef1def8a9ff311e32e7648e2c5c8ce
 Patch0:		%{name}-pc.patch
-URL:		http://www.mozilla.org/projects/nspr/
+URL:		https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSPR
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
 BuildRequires:	sed >= 4.0
