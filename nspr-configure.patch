@@ -1,0 +1,10 @@
+--- nspr-4.15/nspr/configure.in.orig	2017-06-05 22:16:00.000000000 +0200
++++ nspr-4.15/nspr/configure.in	2017-06-20 18:35:40.196433410 +0200
+@@ -1389,6 +1389,7 @@
+     changequote([,])
+     if test "$HOST_DARWIN_MAJOR" -ge 15 ; then
+         AC_DEFINE(HAS_CONNECTX)
++    fi
+     AS='$(CC) -x assembler-with-cpp'
+     CFLAGS="$CFLAGS -Wall -fno-common"
+     case "${target_cpu}" in
