@@ -6,7 +6,7 @@ Release:	1
 Epoch:		1
 License:	MPL v2.0
 Group:		Libraries
-Source0:	http://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
+Source0:	https://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/%{name}-%{version}.tar.gz
 # Source0-md5:	493d0e2284f873681c089cd503b99bf0
 Patch0:		%{name}-pc.patch
 URL:		https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSPR
