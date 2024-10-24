@@ -13,7 +13,7 @@ URL:		https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSPR
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
 BuildRequires:	sed >= 4.0
-Obsoletes:	nspr-pthreads
+Obsoletes:	nspr-pthreads < 4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -29,7 +29,7 @@ Summary:	NSPR library header files for development
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek NSPR
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Obsoletes:	nspr-pthreads-devel
+Obsoletes:	nspr-pthreads-devel < 4
 
 %description devel
 Header files for the NSPR library from Netscape.
@@ -42,7 +42,7 @@ Summary:	Static NSPR library
 Summary(pl.UTF-8):	Statyczna biblioteka NSPR
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Obsoletes:	nspr-pthreads-static
+Obsoletes:	nspr-pthreads-static < 4
 
 %description static
 Static NSPR library.
