@@ -28,7 +28,7 @@ uruchomieniowych Netscape'a.
 Summary:	NSPR library header files for development
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek NSPR
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Obsoletes:	nspr-pthreads-devel < 4
 
 %description devel
@@ -41,7 +41,7 @@ Pliki nagłówkowe bibliotek NSPR Netscape'a.
 Summary:	Static NSPR library
 Summary(pl.UTF-8):	Statyczna biblioteka NSPR
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{epoch}:%{version}-%{release}
 Obsoletes:	nspr-pthreads-static < 4
 
 %description static
